@@ -2,11 +2,8 @@ import { writeFile, readFile, mkdir } from "fs/promises";
 import { join } from "path";
 import type { SketchResult } from "@/types";
 
-const DATA_DIR = join(process.cwd(), "data", "sketches");
-
-async function ensureDir() {
-  await mkdir(DATA_DIR, { recursive: true });
-}
+// In-memory store for sketches (works in serverless)
+const sketchStore = new Map<string, { meta: SketchResult; image: Buffer }>();
 
 function getExt(contentType: string): string {
   if (contentType.includes("webp")) return "webp";
@@ -20,12 +17,7 @@ export async function saveSketch(
   result: Omit<SketchResult, "id" | "createdAt">,
   contentType: string = "image/png"
 ): Promise<SketchResult> {
-  await ensureDir();
-
-  const ext = getExt(contentType);
   const imageBuffer = Buffer.from(imageBase64, "base64");
-  const imagePath = join(DATA_DIR, `${id}.${ext}`);
-  await writeFile(imagePath, imageBuffer);
 
   const sketchResult: SketchResult = {
     id,
@@ -36,16 +28,32 @@ export async function saveSketch(
     contentType,
   };
 
-  const metaPath = join(DATA_DIR, `${id}.json`);
-  await writeFile(metaPath, JSON.stringify(sketchResult, null, 2));
+  // Store in memory
+  sketchStore.set(id, { meta: sketchResult, image: imageBuffer });
+
+  // Also try to persist to disk (works locally, ignored if read-only)
+  try {
+    const dataDir = join(process.cwd(), "data", "sketches");
+    await mkdir(dataDir, { recursive: true });
+    const ext = getExt(contentType);
+    await writeFile(join(dataDir, `${id}.${ext}`), imageBuffer);
+    await writeFile(join(dataDir, `${id}.json`), JSON.stringify(sketchResult, null, 2));
+  } catch {
+    // Read-only filesystem (Vercel), memory store is sufficient
+  }
 
   return sketchResult;
 }
 
 export async function getSketch(id: string): Promise<SketchResult | null> {
-  const metaPath = join(DATA_DIR, `${id}.json`);
+  // Check memory first
+  const cached = sketchStore.get(id);
+  if (cached) return cached.meta;
+
+  // Fallback to disk (local dev)
   try {
-    const content = await readFile(metaPath, "utf-8");
+    const dataDir = join(process.cwd(), "data", "sketches");
+    const content = await readFile(join(dataDir, `${id}.json`), "utf-8");
     return JSON.parse(content) as SketchResult;
   } catch {
     return null;
@@ -56,10 +64,15 @@ export async function getSketchImage(
   id: string,
   contentType: string = "image/png"
 ): Promise<Buffer | null> {
-  const ext = getExt(contentType);
-  const imagePath = join(DATA_DIR, `${id}.${ext}`);
+  // Check memory first
+  const cached = sketchStore.get(id);
+  if (cached) return cached.image;
+
+  // Fallback to disk (local dev)
   try {
-    return await readFile(imagePath);
+    const dataDir = join(process.cwd(), "data", "sketches");
+    const ext = getExt(contentType);
+    return await readFile(join(dataDir, `${id}.${ext}`));
   } catch {
     return null;
   }
