@@ -5,9 +5,26 @@ export const metadata: Metadata = {
   title: "Blog - Soulmate Sketch Articles & Guides",
   description:
     "Learn about soulmate sketches, AI art generation, and relationship insights. Guides, tips, and stories from the Soulmate Sketch community.",
+  alternates: {
+    canonical: "https://soulmate-sketch-zeta.vercel.app/blog",
+  },
 };
 
 const posts = [
+  {
+    slug: "free-soulmate-sketch-online",
+    title: "Free Soulmate Sketch Online — Try It in Under 2 Minutes",
+    excerpt:
+      "Generate a free soulmate sketch online with AI. No sign-up required, no credit card needed. Get your personalized pencil portrait in seconds.",
+    date: "2026-06-01",
+  },
+  {
+    slug: "soulmate-sketch-review",
+    title: "Soulmate Sketch Review 2026 — Is It Legit or a Scam?",
+    excerpt:
+      "Honest soulmate sketch review. We tested the AI generator and share real results, pros, cons, and whether it's worth trying.",
+    date: "2026-06-05",
+  },
   {
     slug: "what-is-a-soulmate-sketch",
     title: "What Is a Soulmate Sketch? Everything You Need to Know",

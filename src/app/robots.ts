@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/", "/result/"],
     },
-    sitemap: "https://soulmatesketch.com/sitemap.xml",
+    sitemap: "https://soulmate-sketch-zeta.vercel.app/sitemap.xml",
   };
 }
