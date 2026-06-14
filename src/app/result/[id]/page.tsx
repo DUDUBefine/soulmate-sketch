@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import type { SketchResult } from "@/types";
+import { trackEvent, trackShare } from "@/lib/analytics";
 
 export default function ResultPage() {
   const params = useParams();
@@ -19,6 +20,7 @@ export default function ResultPage() {
         if (!res.ok) throw new Error("Not found");
         const data = await res.json();
         setResult(data);
+        trackEvent("sketch_viewed");
       } catch {
         setError("Sketch not found or still generating.");
       } finally {
@@ -96,6 +98,7 @@ export default function ResultPage() {
           <a
             href={result.imageUrl}
             download={`soulmate-sketch-${id}.png`}
+            onClick={() => trackEvent("sketch_downloaded")}
             className="block w-full text-center bg-accent text-primary-dark font-bold py-4 rounded-full hover:bg-accent-light transition-colors"
           >
             Download Sketch
@@ -106,6 +109,7 @@ export default function ResultPage() {
               href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackShare("twitter")}
               className="flex-1 py-3 rounded-full border border-white/10 text-white/50 text-sm hover:border-accent/30 hover:text-accent transition-all text-center"
             >
               Twitter
@@ -114,6 +118,7 @@ export default function ResultPage() {
               href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackShare("facebook")}
               className="flex-1 py-3 rounded-full border border-white/10 text-white/50 text-sm hover:border-accent/30 hover:text-accent transition-all text-center"
             >
               Facebook
@@ -122,6 +127,7 @@ export default function ResultPage() {
               href={`https://wa.me/?text=${encodeURIComponent(shareText + " " + shareUrl)}`}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackShare("whatsapp")}
               className="flex-1 py-3 rounded-full border border-white/10 text-white/50 text-sm hover:border-accent/30 hover:text-accent transition-all text-center"
             >
               WhatsApp
@@ -132,6 +138,7 @@ export default function ResultPage() {
         <div className="text-center mt-8">
           <Link
             href="/sketch"
+            onClick={() => trackEvent("regenerate_clicked")}
             className="text-white/30 text-sm hover:text-accent transition-colors"
           >
             Generate another sketch

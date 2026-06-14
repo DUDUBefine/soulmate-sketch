@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Personality, SoulmatePreferences, GenerateRequest } from "@/types";
+import { trackEvent } from "@/lib/analytics";
 
 const STEP_PERSONALITY = 0;
 const STEP_PREFERENCES = 1;
@@ -43,6 +44,11 @@ export default function SketchClient() {
   const [preferences, setPreferences] = useState<SoulmatePreferences>(defaultPreferences);
   const [error, setError] = useState("");
 
+  // 用户进入问卷页 → 追踪漏斗起点
+  useEffect(() => {
+    trackEvent("questionnaire_started");
+  }, []);
+
   function toggleTrait(trait: string) {
     setSelectedTraits((prev) =>
       prev.includes(trait) ? prev.filter((t) => t !== trait) : [...prev, trait]
@@ -75,6 +81,7 @@ export default function SketchClient() {
       }
 
       const data = await res.json();
+      trackEvent("sketch_generated", { gender: preferences.gender });
       router.push(`/result/${data.id}`);
     } catch {
       setError("Something went wrong. Please try again.");
@@ -120,7 +127,7 @@ export default function SketchClient() {
                 </div>
               </div>
               {error && <p className="text-red-400 text-sm">{error}</p>}
-              <button onClick={() => { if (selectedTraits.length === 0) { setError("Please select at least one trait."); return; } setError(""); setStep(STEP_PREFERENCES); }} className="w-full bg-accent text-primary-dark font-bold py-4 rounded-full hover:bg-accent-light transition-colors">
+              <button onClick={() => { if (selectedTraits.length === 0) { setError("Please select at least one trait."); return; } setError(""); setStep(STEP_PREFERENCES); trackEvent("questionnaire_step2"); }} className="w-full bg-accent text-primary-dark font-bold py-4 rounded-full hover:bg-accent-light transition-colors">
                 Continue
               </button>
             </motion.div>
