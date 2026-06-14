@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "Privacy Policy for Soulmate Sketch. Learn how we handle your data, questionnaire responses, and generated images.",
-  alternates: { canonical: "https://soulmate-sketch-zeta.vercel.app/privacy" },
+  alternates: { canonical: "https://soulmatesketch.art/privacy" },
 };
 
 export default function PrivacyPage() {

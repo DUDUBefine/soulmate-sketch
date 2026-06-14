@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-const SITE_URL = "https://soulmate-sketch-zeta.vercel.app";
+const SITE_URL = "https://soulmatesketch.art";
 
 interface BlogPost {
   title: string;

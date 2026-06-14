@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: "About Soulmate Sketch",
   description:
     "Learn about Soulmate Sketch — the AI-powered service that generates personalized pencil sketches of your destined partner using FLUX technology.",
-  alternates: { canonical: "https://soulmate-sketch-zeta.vercel.app/about" },
+  alternates: { canonical: "https://soulmatesketch.art/about" },
 };
 
 export default function AboutPage() {

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const SITE_URL = "https://soulmate-sketch-zeta.vercel.app";
+const SITE_URL = "https://soulmatesketch.art";
 
 // Keep blog slugs in sync with blog/[slug]/page.tsx
 const blogSlugs = [

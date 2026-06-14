@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Learn about soulmate sketches, AI art generation, and relationship insights. Guides, tips, and stories from the Soulmate Sketch community.",
   alternates: {
-    canonical: "https://soulmate-sketch-zeta.vercel.app/blog",
+    canonical: "https://soulmatesketch.art/blog",
   },
 };
 

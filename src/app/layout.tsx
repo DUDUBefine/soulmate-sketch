@@ -4,7 +4,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://soulmate-sketch-zeta.vercel.app"),
+  metadataBase: new URL("https://soulmatesketch.art"),
   title: {
     default: "Soulmate Sketch - Discover What Your Soulmate Looks Like | Free AI Sketch",
     template: "%s | Soulmate Sketch",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
       "Get a free AI-generated pencil sketch of your soulmate. Based on your personality and preferences, our AI reveals your destined partner's portrait.",
     type: "website",
     locale: "en_US",
-    url: "https://soulmate-sketch-zeta.vercel.app",
+    url: "https://soulmatesketch.art",
     siteName: "Soulmate Sketch",
   },
   twitter: {
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://soulmate-sketch-zeta.vercel.app",
+    canonical: "https://soulmatesketch.art",
   },
 };
 
@@ -63,7 +63,7 @@ function OrganizationJsonLd() {
           "@context": "https://schema.org",
           "@type": "Organization",
           name: "Soulmate Sketch",
-          url: "https://soulmate-sketch-zeta.vercel.app",
+          url: "https://soulmatesketch.art",
           description: "AI-powered soulmate sketch generation service",
         }),
       }}
@@ -80,10 +80,10 @@ function WebSiteJsonLd() {
           "@context": "https://schema.org",
           "@type": "WebSite",
           name: "Soulmate Sketch",
-          url: "https://soulmate-sketch-zeta.vercel.app",
+          url: "https://soulmatesketch.art",
           potentialAction: {
             "@type": "SearchAction",
-            target: "https://soulmate-sketch-zeta.vercel.app/blog?q={search_term_string}",
+            target: "https://soulmatesketch.art/blog?q={search_term_string}",
             "query-input": "required name=search_term_string",
           },
         }),
@@ -101,9 +101,9 @@ function BreadcrumbJsonLd() {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://soulmate-sketch-zeta.vercel.app" },
-            { "@type": "ListItem", position: 2, name: "Get Your Sketch", item: "https://soulmate-sketch-zeta.vercel.app/sketch" },
-            { "@type": "ListItem", position: 3, name: "Blog", item: "https://soulmate-sketch-zeta.vercel.app/blog" },
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://soulmatesketch.art" },
+            { "@type": "ListItem", position: 2, name: "Get Your Sketch", item: "https://soulmatesketch.art/sketch" },
+            { "@type": "ListItem", position: 3, name: "Blog", item: "https://soulmatesketch.art/blog" },
           ],
         }),
       }}

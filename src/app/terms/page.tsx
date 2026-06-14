@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "Terms of Service for Soulmate Sketch. Entertainment-only AI-generated soulmate portraits.",
-  alternates: { canonical: "https://soulmate-sketch-zeta.vercel.app/terms" },
+  alternates: { canonical: "https://soulmatesketch.art/terms" },
 };
 
 export default function TermsPage() {

@@ -6,12 +6,12 @@ export const metadata: Metadata = {
   description:
     "Answer a few questions about your personality and preferences, and our AI will generate a beautiful pencil sketch of your soulmate. Free, takes under 2 minutes.",
   alternates: {
-    canonical: "https://soulmate-sketch-zeta.vercel.app/sketch",
+    canonical: "https://soulmatesketch.art/sketch",
   },
   openGraph: {
     title: "Get Your Free Soulmate Sketch",
     description: "Our AI creates a personalized pencil sketch of your soulmate based on your personality. Try it free!",
-    url: "https://soulmate-sketch-zeta.vercel.app/sketch",
+    url: "https://soulmatesketch.art/sketch",
   },
 };
 
