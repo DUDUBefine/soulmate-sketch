@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+
+const GA_ID = "G-FHBDW6XBFF";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://soulmatesketch.art"),
@@ -134,6 +137,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <GoogleAnalytics gaId={GA_ID} />
       </body>
     </html>
   );
