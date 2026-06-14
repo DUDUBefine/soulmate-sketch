@@ -12,6 +12,14 @@ export const metadata: Metadata = {
     title: "Get Your Free Soulmate Sketch",
     description: "Our AI creates a personalized pencil sketch of your soulmate based on your personality. Try it free!",
     url: "https://soulmatesketch.art/sketch",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Get Your Free Soulmate Sketch",
+      },
+    ],
   },
 };
 

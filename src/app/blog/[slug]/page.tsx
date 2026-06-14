@@ -257,6 +257,14 @@ export async function generateMetadata({
       type: "article",
       publishedTime: post.date,
       url: `${SITE_URL}/blog/${slug}`,
+      images: [
+        {
+          url: "/opengraph-image",
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
     },
   };
 }
