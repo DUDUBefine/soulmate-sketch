@@ -31,12 +31,21 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://soulmatesketch.art",
     siteName: "Soulmate Sketch",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Soulmate Sketch - Discover What Your Soulmate Looks Like",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Soulmate Sketch - Discover Your Soulmate's Face",
     description:
       "Free AI-generated pencil sketch of your soulmate based on your personality and preferences.",
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
